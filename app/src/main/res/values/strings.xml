@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">Let's Chat</string>
+    <string name="app_name">Go Chat</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_pass">Password</string>
     <string name="login_btn_label">LOGIN</string>
+    <string name="sign_up_text">New User? Sign Up</string>
 </resources>
