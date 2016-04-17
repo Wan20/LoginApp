@@ -37,9 +37,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tx1"
+            android:textColor="@color/textColor"
             android:id="@+id/email"
-            android:inputType="textEmailAddress"
-            android:textColor="@color/textColor"/>
+            android:inputType="textEmailAddress"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -54,21 +54,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tx2"
+            android:textColor="@color/textColor"
             android:id="@+id/password"
-            android:inputType="textPassword"
-            android:textColor="@color/textColor"/>
+            android:inputType="textPassword" />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/login_btn_label"
             style="?android:textAppearanceSmall"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:id="@+id/login_button"
             android:layout_below="@id/password"
             android:layout_marginTop="35dp"
-            android:id="@+id/login_button"
-            android:background="@drawable/button_selecter"
-            android:textColor="@color/textColor"/>
+            android:background="@drawable/button_selecter" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

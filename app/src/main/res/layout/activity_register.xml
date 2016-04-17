@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.wansu.loginapp.RegisterActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/textColor"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:labelFor="@+id/password"
+        android:layout_marginTop="30dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_name"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:id="@+id/tx1"
+            android:labelFor="@+id/reg_name"
+            android:layout_alignParentStart="true"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tx1"
+            android:textColor="@color/textColor"
+            android:id="@+id/reg_name"
+            android:inputType="textPersonName"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_email"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:id="@+id/tx2"
+            android:labelFor="@+id/reg_email"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/reg_name"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tx2"
+            android:textColor="@color/textColor"
+            android:id="@+id/reg_email"
+            android:inputType="textEmailAddress"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_pass"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:id="@+id/tx3"
+            android:labelFor="@+id/reg_pass"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/reg_email"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tx3"
+            android:textColor="@color/textColor"
+            android:id="@+id/reg_pass"
+            android:inputType="textPassword"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_con_pass"
+            android:textColor="@color/textColor"
+            android:textSize="20sp"
+            android:id="@+id/tx4"
+            android:labelFor="@+id/reg_con_pass"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/reg_pass"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tx4"
+            android:textColor="@color/textColor"
+            android:id="@+id/reg_con_pass"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reg_btn_label"
+            style="?android:textAppearanceSmall"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:id="@+id/reg_button"
+            android:layout_below="@id/reg_con_pass"
+            android:layout_marginTop="35dp"
+            android:background="@drawable/button_selecter" />
+    </RelativeLayout>
+
+</LinearLayout>

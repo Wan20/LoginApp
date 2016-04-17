@@ -4,4 +4,8 @@
     <string name="prompt_pass">Password</string>
     <string name="login_btn_label">LOGIN</string>
     <string name="sign_up_text">New User? Sign Up</string>
+
+    <string name="prompt_name">Name</string>
+    <string name="prompt_con_pass">Confirm Password</string>
+    <string name="reg_btn_label">Register</string>
 </resources>
