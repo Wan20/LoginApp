@@ -23,11 +23,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 
-/**
- * Created by wansu on 20/04/16.
- */
+//Created by wansu on 20/04/16.
+
 public class BackgroundTask extends AsyncTask <String,Void,String> {
-    String register_url = "http://localhost/loginapp/register.php";
+    String register_url = "http://192.168.23.27/loginapp/register.php";
     Context ctx;
     ProgressDialog progressDialog;
     Activity activity;
@@ -79,7 +78,7 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
-                bufferedWriter.close();;
+                bufferedWriter.close();
 
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
@@ -92,7 +91,7 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
                     stringBuilder.append(line+"\n");
                 }
 
-                httpURLConnection.disconnect();;
+                httpURLConnection.disconnect();
                 Thread.sleep(5000);
                 return stringBuilder.toString().trim();
 
