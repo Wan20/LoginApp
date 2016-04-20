@@ -2,7 +2,9 @@ package com.example.wansu.loginapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 
 import org.json.JSONArray;
@@ -27,6 +29,7 @@ import java.net.URLEncoder;
 public class BackgroundTask extends AsyncTask <String,Void,String> {
     String register_url = "http://localhost/loginapp/register.php";
     Context ctx;
+    ProgressDialog progressDialog;
     Activity activity;
     AlertDialog.Builder builder;
 
@@ -38,11 +41,19 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
     }
 
     @Override
-    protected void onPreExecute() {
+    protected void onPreExecute()
+    {
         builder = new AlertDialog.Builder(ctx);
+        progressDialog = new ProgressDialog(ctx);
+        progressDialog.setTitle("Please wait");
+        progressDialog.setMessage("Connecting to server....");
+        progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
     }
 
-    @Override //http://www.codeproject.com/Tips/773464/How-to-Add-an-AsyncTask-to-an-Android-Activity
+    //http://www.codeproject.com/Tips/773464/How-to-Add-an-AsyncTask-to-an-Android-Activity
+    @Override
     protected String doInBackground(String... params) {
         String method = params[0];
         if(method.equals("register"))
@@ -54,35 +65,48 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
                 httpURLConnection.setRequestMethod("POST");
                 httpURLConnection.setDoOutput(true);
                 httpURLConnection.setDoInput(true);
+
                 OutputStream outputStream = httpURLConnection.getOutputStream();
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+
                 String name = params[1];
                 String email = params[2];
                 String pass = params[3];
+
                 String data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"+
                         URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"+
                         URLEncoder.encode("pass","UTF-8")+"="+URLEncoder.encode(pass,"UTF-8");
+
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
                 bufferedWriter.close();;
+
                 outputStream.close();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
                 StringBuilder stringBuilder = new StringBuilder();
                 String line = "";
+
                 while ((line=bufferedReader.readLine())!=null)
                 {
                     stringBuilder.append(line+"\n");
                 }
 
                 httpURLConnection.disconnect();;
+                Thread.sleep(5000);
                 return stringBuilder.toString().trim();
 
             }
             catch (MalformedURLException e)
             {
                 e.printStackTrace();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+            catch (InterruptedException e)
+            {
                 e.printStackTrace();
             }
         }
@@ -90,7 +114,8 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
     }
 
     @Override
-    protected void onProgressUpdate(Void... values) {
+    protected void onProgressUpdate(Void... values)
+    {
         super.onProgressUpdate(values);
     }
 
@@ -99,6 +124,7 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
     {
         try
         {
+            progressDialog.dismiss();
             JSONObject jsonObject = new JSONObject(json);
             JSONArray jsonArray = jsonObject.getJSONArray("server_response");
             JSONObject JO = jsonArray.getJSONObject(0);
@@ -106,11 +132,11 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
             String message = JO.getString("message");
             if(code.equals("reg_true"))
             {
-                showDialog("Registration Success"), message, code);
+                showDialog("Registration Success",message,code);
             }
-            else if(code.equals("reg_false"))
+            else if(code.equals("reg.true"))
             {
-                showDialog("Registration Failed"), message, code);
+                showDialog("Registration Failed",message,code);
             }
         }
         catch (JSONException e)
@@ -124,7 +150,17 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
         if(code.equals("reg_true")||code.equals("reg_false"))
         {
             builder.setMessage(message);
-            builder.setPositiveButton("OK")
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+            {
+                @Override
+                public void onClick(DialogInterface dialog, int which)
+                {
+                    dialog.dismiss();
+                    activity.finish();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         }
     }
 }
