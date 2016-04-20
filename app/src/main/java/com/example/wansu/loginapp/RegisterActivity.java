@@ -60,6 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         });
+            BackgroundTask backgroundTask = new BackgroundTask(RegisterActivity.this);
+        backgroundTask.execute("register",Name.getText().toString(),Email.getText().toString(),Pass.getText().toString());
+
     }
 
 }
