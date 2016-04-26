@@ -1,20 +1,17 @@
 <?php
- $server_name = "localhost";
- $user = "WanSu";
- $pass = "InD!g0";
- $dbname = "userdb";
+$host = "localhost";
+$user = "Wan";
+$password = "InD!g0";
+$dbname = "userdb";
 
- $con = mysqli_connect($server_name,$user,$pass,$dbname);
+$con = mysqli_connect($host,$user,$password,$dbname);
 
 if(!$con)
 {
-	die("Error in database connection". mysqli_connect_error());
+die("Error in database connection". mysqli_connect_error());
 }
 else
 {
-	echo "<h3>Database connection Success Wandy...";
+echo "<h3>Database connection Success ...";
 }
-
 ?>
-
-
