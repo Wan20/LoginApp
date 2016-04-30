@@ -26,7 +26,7 @@ import java.net.URLEncoder;
 //Created by wansu on 20/04/16.
 
 public class BackgroundTask extends AsyncTask <String,Void,String> {
-    String register_url = "http://192.168.23.27/loginapp/register.php";
+    String register_url = "http://localhost/loginapp/register.php";
     Context ctx;
     ProgressDialog progressDialog;
     Activity activity;
@@ -70,11 +70,11 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
 
                 String name = params[1];
                 String email = params[2];
-                String pass = params[3];
+                String password = params[3];
 
                 String data = URLEncoder.encode("name","UTF-8")+"="+URLEncoder.encode(name,"UTF-8")+"&"+
                         URLEncoder.encode("email","UTF-8")+"="+URLEncoder.encode(email,"UTF-8")+"&"+
-                        URLEncoder.encode("pass","UTF-8")+"="+URLEncoder.encode(pass,"UTF-8");
+                        URLEncoder.encode("pass","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
 
                 bufferedWriter.write(data);
                 bufferedWriter.flush();
@@ -133,7 +133,7 @@ public class BackgroundTask extends AsyncTask <String,Void,String> {
             {
                 showDialog("Registration Success",message,code);
             }
-            else if(code.equals("reg.true"))
+            else if(code.equals("reg.false"))
             {
                 showDialog("Registration Failed",message,code);
             }

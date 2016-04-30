@@ -14,7 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
     }
-
+        //http://stackoverflow.com/questions/31897607/whats-the-difference-between-setting-an-onclicklistener-and-making-an-xml-andro
         public void click(View v)
         {
             Intent intent = new Intent(LoginActivity.this,
